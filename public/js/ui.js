@@ -2,6 +2,8 @@ $(document).ready(function () {
 
   $('.sidenav').sidenav();
   $('.tooltipped').tooltip();
+  $('select').formSelect();
+  $('input#input_text, textarea#textarea1').characterCounter();
 
   var current_page = window.location.href;
 
