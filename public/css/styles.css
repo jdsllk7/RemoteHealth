@@ -15,7 +15,7 @@ input,textarea{
   z-index: 991;
   top: 0;
   left: 0;
-  background-color: #1f2835;
+  background-color: rgb(0, 0, 0);
   display:block;
   padding-top: 180px;
   justify-content: center;
