@@ -3,6 +3,11 @@ $(document).ready(function () {
   $('.sidenav').sidenav();
   $('.tooltipped').tooltip();
   $('select').formSelect();
+  $('.collapsible').collapsible();
+  var elem = document.querySelector('.collapsible.expandable');
+  var instance = M.Collapsible.init(elem, {
+    accordion: false
+  });
   $('input#input_text, textarea#textarea1').characterCounter();
 
   var current_page = window.location.href;
@@ -13,7 +18,7 @@ $(document).ready(function () {
     M.toast({ html: text });
   }
 
- 
+
 
 });
 
@@ -29,7 +34,7 @@ $(document).ready(function () {
 
 //Pin Location
 function getLocation() {
-  document.getElementById('loader-wrapper2').style.display = 'block';
+  document.getElementById('loader-wrapper').style.display = 'block';
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition, showError);
   } else {
@@ -39,13 +44,11 @@ function getLocation() {
 }//end getLocation()
 
 function showPosition(position) {
-  document.getElementById("latitude").disabled = false;
-  document.getElementById("longitude").disabled = false;
-  document.getElementById("latitude").value = position.coords.latitude;
-  document.getElementById("longitude").value = position.coords.longitude;
-  var text = '<span>SUCCESS: Location Pinned Successfully!</span>';
+  document.getElementById("lat").value = position.coords.latitude;
+  document.getElementById("long").value = position.coords.longitude;
+  var text = '<span class="green-text text-darken-1"><b>SUCCESS:</b> Location Pinned Successfully! <i class="material-icons">check_box</i></span>';
   M.toast({ html: text });
-  $(".loader-wrapper2").fadeOut("slow");
+  $(".loader-wrapper").fadeOut("slow");
 }//end showPosition()
 
 function showError(error) {
@@ -67,5 +70,5 @@ function showError(error) {
       M.toast({ html: text });
       break;
   }
-  $(".loader-wrapper2").fadeOut("slow");
+  $(".loader-wrapper").fadeOut("slow");
 }//end showError()

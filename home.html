@@ -42,14 +42,11 @@
           <a class="brand-logo center"><h5>RemoteHealth</h5></a>
           <a href="/respond"><i class="left material-icons">add_alert</i><span
               class="nav_badge new badge blue"><strong>14</strong></span></a>
-          <ul id="nav-mobile" class="right">
-
-          </ul>
         </div>
       </nav>
     </div>
 
-    <form class="container row white-text z-depth-0">
+    <form class="container row white-text">
 
       <div>
 
@@ -143,14 +140,14 @@
       <div style="margin-bottom:30px;" class="input-field col s10 offset-s1">
         <select required name="priority">
           <option value="healthCenter">Normal</option>
-          <option value="remoteLocation">High</option>
+          <option value="remoteLocation">High Priority</option>
         </select>
         <label class="white-text">Response Priority</label>
       </div>
 
 
       <div style="margin-bottom:30px;" class="input-field col s10 offset-s1">
-        <select required name="location">
+        <select required name="location" onchange="getLocation()">
           <option value="" selected></option>
           <option value="healthCenter">Health Center</option>
           <option value="remoteLocation">Remote Location</option>
@@ -159,8 +156,8 @@
       </div>
 
 
-      <input type="hidden" name="lat" required>
-      <input type="hidden" name="long" required>
+      <input type="hidden" id="lat" name="lat" required>
+      <input type="hidden" id="long" name="long" required>
 
 
 
