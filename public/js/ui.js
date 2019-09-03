@@ -12,7 +12,7 @@ $(document).ready(function () {
 
   var current_page = window.location.href;
 
-  var position = current_page.search("/me");
+  var position = current_page.search("/enterSomething");
   if (position != -1) {
     var text = '<span class="green-text text-darken-1"><b>Welcome to RemoteHealth <i class="material-icons">add_alert</i></b></span>';
     M.toast({ html: text });
@@ -46,7 +46,7 @@ function getLocation() {
 function showPosition(position) {
   document.getElementById("lat").value = position.coords.latitude;
   document.getElementById("long").value = position.coords.longitude;
-  var text = '<span class="green-text text-darken-1"><b>SUCCESS:</b> Location Pinned Successfully! <i class="material-icons">check_box</i></span>';
+  var text = '<span class="green-text text-lighten-3"><b>SUCCESS:</b> Location Pinned Successfully! <i class="material-icons">check_box</i></span>';
   M.toast({ html: text });
   $(".loader-wrapper").fadeOut("slow");
 }//end showPosition()

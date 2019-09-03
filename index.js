@@ -43,6 +43,10 @@ app.get('/respond', function (request, response) {
     response.sendFile(path.join(__dirname + '/respond.html'));
 });
 
+app.get('/map', function (request, response) {
+    response.render('map.ejs', { lat: request.query.lat, long: request.query.long, name: request.query.name });
+});
+
 
 
 

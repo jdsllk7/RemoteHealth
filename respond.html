@@ -65,10 +65,11 @@
             Tambatamba<span class="new badge red" data-badge-caption="Agent!"></span></div>
           <div class="collapsible-body">
             <span class="white-text">
-              <form action="/map" class="locate_btn">
+              <form action="/map" method="GET" class="locate_btn">
                 <input type="hidden" name="lat" value="-15.8"/>
                 <input type="hidden" name="long" value="28.1"/>
-                <button name="locate_btn" class="btn-floating btn-small waves-effect waves-light green darken-3 white-text"><i class="material-icons">room</i></button>
+                <input type="hidden" name="name" value="Tony Stark"/>
+                <button type="submit" class="btn-floating btn-small waves-effect waves-light green darken-3 white-text"><i class="material-icons">room</i></button>
               </form>
               <span><b>Age:</b> 27 years</span><br>
               <span><b>Sex:</b> Female</span><br>
