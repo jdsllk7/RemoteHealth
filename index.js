@@ -28,11 +28,20 @@ app.use(bodyParser.json());
 
 //DISPLAY REGISTER PAGE
 app.get('/', function (request, response) {
-    response.sendFile(path.join(__dirname + '/register.html'));
+    if (request.cookies.med_id == undefined) {
+        response.sendFile(path.join(__dirname + '/register.html'));
+    }else{
+        response.redirect('/home');
+    }
 });
 
 app.get('/home', function (request, response) {
-    response.sendFile(path.join(__dirname + '/home.html'));
+    if (request.cookies.med_id == undefined) {
+        response.cookie('med_id', request.query.med_id, { maxAge: 31556952000 });
+        response.redirect('/');
+    }else{
+        response.sendFile(path.join(__dirname + '/home.html'));
+    }
 });
 
 app.get('/fallback', function (request, response) {
@@ -41,6 +50,13 @@ app.get('/fallback', function (request, response) {
 
 app.get('/respond', function (request, response) {
     response.sendFile(path.join(__dirname + '/respond.html'));
+});
+
+app.get('/signOut', function (request, response) {
+    response.clearCookie('med_id');
+    console.log(request.cookies.med_id);
+    response.redirect('/');
+    response.end();
 });
 
 app.get('/map', function (request, response) {
@@ -53,7 +69,7 @@ app.get('/map', function (request, response) {
 
 
 //LISTEN TO PORT
-var port = process.env.PORT || 4000;
+var port = process.env.PORT || 3000;
 app.listen(port, function () {
-    console.log('Running localhost:4000');
+    console.log('Running localhost:3000');
 });

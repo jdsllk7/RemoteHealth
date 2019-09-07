@@ -20,9 +20,9 @@
 
     <!-- ios support -->
     <link rel="apple-touch-icon" href="/public/img/icons/icon-96x96.png">
-    <meta name="apple-mobile-web-app-status-bar" content="#69f0ae">
+    <meta name="apple-mobile-web-app-status-bar" content="#2e7d32">
 
-    <meta name="theme-color" content="#69f0ae">
+    <meta name="theme-color" content="#2e7d32">
 
     <!--Import jQuery before materialize.js-->
     <script src="/public/js/jquery-3.4.1.min.js"></script>
@@ -51,7 +51,7 @@
 
 
     <form class="row container" method="get" action="/home"
-      autocomplete="on">
+      autocomplete="on" onsubmit="document.getElementById('loader-wrapper2').style.display = 'block';">
 
       <br>
       <br>
@@ -62,13 +62,13 @@
       <br>
 
       <div class="input-field col s10 m8 l6 offset-s1 offset-m2 offset-l3">
-        <input id="last_name" type="text" class="white-text validate"
+        <input id="last_name" type="number" class="white-text validate"
           name="med_id"
           autofocus
           required autocomplete="on">
         <label for="last_name" class="white-text">Enter Medical ID</label>
       </div>
-      <input type="hidden" name="player_id" id="player_id">
+      <!-- <input type="hidden" name="player_id" id="player_id"> -->
       <div class="input-field col s6 offset-s3 center">
         <button class="btn waves-effect waves-light green darken-3"
           type="submit"
@@ -78,6 +78,20 @@
       </div>
 
     </form>
+
+    <div id="loader-wrapper2" class="loader-wrapper center grey darken-3">
+      <div class="preloader-wrapper active">
+          <div class="spinner-layer spinner-white-only">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+      </div>
+    </div>
 
 
 
@@ -93,6 +107,7 @@
     </script>
     <script src="/public/js/app.js"></script>
     <script src="/public/js/ui.js"></script>
+    <script src="/public/js/auth.js"></script>
 
   </body>
 </html>

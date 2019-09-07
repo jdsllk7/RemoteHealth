@@ -21,9 +21,9 @@
 
     <!-- ios support -->
     <link rel="apple-touch-icon" href="/public/img/icons/icon-96x96.png">
-    <meta name="apple-mobile-web-app-status-bar" content="#69f0ae">
+    <meta name="apple-mobile-web-app-status-bar" content="#2e7d32">
 
-    <meta name="theme-color" content="#69f0ae">
+    <meta name="theme-color" content="#2e7d32">
 
     <!--Import jQuery before materialize.js-->
     <script src="/public/js/jquery-3.4.1.min.js"></script>
@@ -40,13 +40,14 @@
       <nav class="green darken-3" style="z-index: 999;">
         <div class="nav-wrapper container">
           <a class="brand-logo center"><h5>RemoteHealth</h5></a>
-          <a href="/respond"><i class="left material-icons">add_alert</i><span
+          <a onclick="document.getElementById('loader-wrapper2').style.display = 'block';" href="/respond"><i class="left material-icons">add_alert</i><span
               class="nav_badge new badge blue"><strong>14</strong></span></a>
+              <a onclick="document.getElementById('loader-wrapper2').style.display = 'block';" href="/signOut" class="right">LogOut</a>
         </div>
       </nav>
     </div>
 
-    <form class="container row white-text">
+    <form class="container row white-text" method="get" action="/home" onsubmit="document.getElementById('loader-wrapper2').style.display = 'block';">
 
       <div>
 
@@ -65,7 +66,7 @@
 
 
         <div style="margin-bottom:20px;" class="input-field col s5 offset-s1">
-          <input id="idfor5" type="text" class="validate" name="patient_age"
+          <input id="idfor5" type="number" class="validate" name="patient_age"
             required>
           <label for="idfor5" class="white-text">Age</label>
         </div>
@@ -139,8 +140,8 @@
 
       <div style="margin-bottom:30px;" class="input-field col s10 offset-s1">
         <select required name="priority">
-          <option value="healthCenter">Normal</option>
-          <option value="remoteLocation">High Priority</option>
+          <option value="" selected></option>
+          <option value="remoteLocation">Critical</option> 
         </select>
         <label class="white-text">Response Priority</label>
       </div>
@@ -188,6 +189,20 @@
       <h6 id="activatePush" class="center white-text text-lighten-3">Google is
         getting your location...</h6>
       <a id="hideMeToo" href="/home" class="btn waves-effect waves-light green darken-3">Refresh</a>
+    </div>
+    
+    <div id="loader-wrapper2" class="loader-wrapper center grey darken-3">
+      <div class="preloader-wrapper active">
+          <div class="spinner-layer spinner-white-only">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+      </div>
     </div>
 
 
