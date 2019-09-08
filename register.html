@@ -50,7 +50,7 @@
 
 
 
-    <form class="row container" method="get" action="/home"
+    <form class="row container" id='med_id_form'
       autocomplete="on" onsubmit="document.getElementById('loader-wrapper2').style.display = 'block';">
 
       <br>
@@ -62,7 +62,7 @@
       <br>
 
       <div class="input-field col s10 m8 l6 offset-s1 offset-m2 offset-l3">
-        <input id="last_name" type="number" class="white-text validate"
+        <input id="med_id" type="number" class="white-text validate"
           name="med_id"
           autofocus
           required autocomplete="on">
@@ -105,9 +105,31 @@
 
       });
     </script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCb5QTtOqAeW7jvKamFDHUWXHSuvxT5__A",
+        authDomain: "nyumba-246417.firebaseapp.com",
+        databaseURL: "https://nyumba-246417.firebaseio.com",
+        projectId: "nyumba-246417",
+        storageBucket: "nyumba-246417.appspot.com",
+        messagingSenderId: "581948417790",
+        appId: "1:581948417790:web:b844ec71ae0ebcae3b27af"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+    </script>
+
+
     <script src="/public/js/app.js"></script>
     <script src="/public/js/ui.js"></script>
-    <script src="/public/js/auth.js"></script>
+    <script src="/public/js/db.js"></script>
 
   </body>
 </html>

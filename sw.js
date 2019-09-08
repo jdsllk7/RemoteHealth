@@ -1,5 +1,5 @@
-const dynamicCacheName = 'site-dynamic-v2';
-const staticCacheName =   'site-static-v2';
+const dynamicCacheName = 'site-dynamic-v1';
+const staticCacheName   = 'site-static-v1';
 const assets = [
     '/',
     '/home',
@@ -55,17 +55,37 @@ self.addEventListener('activate', evt => {
 
 // fetch event 
 self.addEventListener('fetch', evt => {
-    console.log('fetching');
-    evt.respondWith(
-        caches.match(evt.request).then(cacheRes => {
-            return cacheRes || fetch(evt.request).then(fetchRes => {
-                return caches.open(dynamicCacheName).then(cache => {
-                    cache.put(evt.request.url, fetchRes.clone());
-                    // check cached items size
-                    limitCacheSize(dynamicCacheName, 10);
-                    return fetchRes;
-                })
-            });
-        }).catch(() => caches.match('/fallback'))
-    );
+    if (evt.request.url.indexOf('firestore.googleapis.com') === -1) {
+        // console.log('fetching');
+        evt.respondWith(
+            caches.match(evt.request).then(cacheRes => {
+                return cacheRes || fetch(evt.request).then(fetchRes => {
+                    return caches.open(dynamicCacheName).then(cache => {
+                        cache.put(evt.request.url, fetchRes.clone());
+                        // check cached items size
+                        limitCacheSize(dynamicCacheName, 10);
+                        return fetchRes;
+                    })
+                });
+            }).catch(() => caches.match('/fallback'))
+        );
+    }
 });
+
+
+//listen to notification clicks
+self.addEventListener('notificationclick', event => {
+    const notification = event.notification;
+    const action = event.action;
+    if (action === 'close') {
+        notification.close();
+    } else {
+        clients.openWindow('/respond');
+    }
+});
+
+self.addEventListener('notificationclose', event => {
+    const notification = event.notification;
+    const primaryKey = notification.data.primaryKey;
+    console.log('Closed Notification', event);
+}); 

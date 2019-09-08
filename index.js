@@ -18,7 +18,7 @@ app.get("/sw.js", function (req, res) {
 
 //JS SESSIONS
 app.use(session({
-    secret: 'secret101me',
+    secret: 'secret101jdslk',
     resave: true,
     saveUninitialized: true
 }));
@@ -28,20 +28,13 @@ app.use(bodyParser.json());
 
 //DISPLAY REGISTER PAGE
 app.get('/', function (request, response) {
-    if (request.cookies.med_id == undefined) {
-        response.sendFile(path.join(__dirname + '/register.html'));
-    }else{
-        response.redirect('/home');
-    }
+    response.sendFile(path.join(__dirname + '/register.html'));
 });
 
 app.get('/home', function (request, response) {
-    if (request.cookies.med_id == undefined) {
-        response.cookie('med_id', request.query.med_id, { maxAge: 31556952000 });
-        response.redirect('/');
-    }else{
-        response.sendFile(path.join(__dirname + '/home.html'));
-    }
+    response.cookie('med_id', request.query.med_id, { maxAge: 31556952000 });
+    // console.log(request.query.med_id);
+    response.sendFile(path.join(__dirname + '/home.html'));
 });
 
 app.get('/fallback', function (request, response) {
@@ -52,11 +45,14 @@ app.get('/respond', function (request, response) {
     response.sendFile(path.join(__dirname + '/respond.html'));
 });
 
+app.get('/icon', function (request, response) {
+    response.sendFile(path.join(__dirname + '/public/img/Clip.ico'));
+});
+
 app.get('/signOut', function (request, response) {
     response.clearCookie('med_id');
-    console.log(request.cookies.med_id);
+    console.log('SignOut');
     response.redirect('/');
-    response.end();
 });
 
 app.get('/map', function (request, response) {

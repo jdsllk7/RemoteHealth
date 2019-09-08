@@ -40,14 +40,18 @@
       <nav class="green darken-3" style="z-index: 999;">
         <div class="nav-wrapper container">
           <a class="brand-logo center"><h5>RemoteHealth</h5></a>
-          <a onclick="document.getElementById('loader-wrapper2').style.display = 'block';" href="/respond"><i class="left material-icons">add_alert</i><span
+          <a onclick="document.getElementById('loader-wrapper2').style.display=
+            'block';" href="/respond"><i class="left material-icons">add_alert</i><span
               class="nav_badge new badge blue"><strong>14</strong></span></a>
-              <a onclick="document.getElementById('loader-wrapper2').style.display = 'block';" href="/signOut" class="right">LogOut</a>
+          <a onclick="document.getElementById('loader-wrapper2').style.display=
+            'block';" href="/signOut" class="right">LogOut</a>
         </div>
       </nav>
     </div>
 
-    <form class="container row white-text" method="get" action="/home" onsubmit="document.getElementById('loader-wrapper2').style.display = 'block';">
+    <form class="container row white-text" id="patient_form_id" autocomplete="on"
+      onsubmit="document.getElementById('loader-wrapper2').style.display=
+      'block';">
 
       <div>
 
@@ -56,22 +60,21 @@
           info
           <i class="material-icons">info_outline</i></h5>
 
-
         <div style="margin-bottom:20px;" class="input-field col s10 offset-s1">
-          <input id="idfor1" type="text" class="validate" name="patient_name"
-            required>
-          <label for="idfor1" class="white-text">Full Name</label>
+          <input id="patient_name" type="text" class="validate"
+            name="patient_name"
+            >
+          <label for="patient_name" class="white-text">Full Name</label>
         </div>
-
-
 
         <div style="margin-bottom:20px;" class="input-field col s5 offset-s1">
-          <input id="idfor5" type="number" class="validate" name="patient_age"
-            required>
-          <label for="idfor5" class="white-text">Age</label>
+          <input id="patient_age" type="number" class="validate"
+            name="patient_age"
+            >
+          <label for="patient_age" class="white-text">Age</label>
         </div>
         <div class="input-field col s5">
-          <select required name="ageType">
+          <select  name="ageType" id="ageType">
             <option value="years" selected>Years</option>
             <option value="months">Months</option>
             <option value="weeks">Weeks</option>
@@ -83,17 +86,16 @@
         <div style="margin-bottom:20px;" class="col s10 offset-s1">
           <p class="col s10"><b>SEX</b></p>
           <p>
-            <label class="white-text" for="test1">
-              <input class="with-gap" name="sex" type="radio" id="test1"
+            <label class="white-text" for="male">
+              <input class="with-gap white" id="male" name="sex" value="male" type="radio"
                 checked/>
               <span>Male</span>
             </label>
           </p>
           <p>
-            <label class="white-text" for="test2">
-              <input class="with-gap white" name="sex" type="radio"
-                id="test2"
-                />
+            <label class="white-text" for="female">
+              <input class="with-gap white" id="female"name="sex" value="female"
+                type="radio" />
               <span>Female</span>
             </label>
           </p>
@@ -106,23 +108,25 @@
 
 
       <div style="margin-bottom:20px;" class="input-field col s10 offset-s1">
-        <input id="idfor2" type="text" class="validate" name="patient_temp"
-          required>
-        <label for="idfor2" class="white-text">Temperature</label>
+        <input id="patient_temp" type="text" class="validate"
+          name="patient_temp"
+          >
+        <label for="patient_temp" class="white-text">Temperature</label>
       </div>
 
 
       <div style="margin-bottom:20px;" class="input-field col s10 offset-s1">
-        <input id="idfor3" type="text" class="validate" name="patient_bp"
-          required>
-        <label for="idfor3" class="white-text">Blood Pressure</label>
+        <input id="patient_bp" type="text" class="validate" name="patient_bp"
+          >
+        <label for="patient_bp" class="white-text">Blood Pressure</label>
       </div>
 
 
       <div style="margin-bottom:20px;" class="input-field col s10 offset-s1">
-        <input id="idfor4" type="text" class="validate" name="patient_weight"
-          required>
-        <label for="idfor4" class="white-text">Weight (kg)</label>
+        <input id="patient_weight" type="text" class="validate"
+          name="patient_weight"
+          >
+        <label for="patient_weight" class="white-text">Weight (kg)</label>
       </div>
 
 
@@ -139,27 +143,22 @@
 
 
       <div style="margin-bottom:30px;" class="input-field col s10 offset-s1">
-        <select required name="priority">
+        <select  name="priority" id="priority">
           <option value="" selected></option>
-          <option value="remoteLocation">Critical</option> 
+          <option value="critical">Critical</option>
         </select>
         <label class="white-text">Response Priority</label>
       </div>
 
 
       <div style="margin-bottom:30px;" class="input-field col s10 offset-s1">
-        <select required name="location" onchange="getLocation()">
+        <select required name="location" id="location" onchange="getLocation()">
           <option value="" selected></option>
           <option value="healthCenter">Health Center</option>
           <option value="remoteLocation">Remote Location</option>
         </select>
         <label class="white-text">Patient's Location</label>
       </div>
-
-
-      <input type="hidden" id="lat" name="lat" required>
-      <input type="hidden" id="long" name="long" required>
-
 
 
       <div style="margin-bottom:50px;" class="input-field col s6 offset-s3
@@ -175,40 +174,63 @@
 
 
     <div id="loader-wrapper" class="loader-wrapper center grey darken-3">
-        <div class="preloader-wrapper active">
-            <div class="spinner-layer spinner-white-only">
-              <div class="circle-clipper left">
-                <div class="circle"></div>
-              </div><div class="gap-patch">
-                <div class="circle"></div>
-              </div><div class="circle-clipper right">
-                <div class="circle"></div>
-              </div>
-            </div>
+      <div class="preloader-wrapper active">
+        <div class="spinner-layer spinner-white-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
           </div>
+        </div>
+      </div>
       <h6 id="activatePush" class="center white-text text-lighten-3">Google is
         getting your location...</h6>
-      <a id="hideMeToo" href="/home" class="btn waves-effect waves-light green darken-3">Refresh</a>
+      <a id="hideMeToo" href="/home" class="btn waves-effect waves-light green
+        darken-3">Refresh</a>
     </div>
-    
+
     <div id="loader-wrapper2" class="loader-wrapper center grey darken-3">
       <div class="preloader-wrapper active">
-          <div class="spinner-layer spinner-white-only">
-            <div class="circle-clipper left">
-              <div class="circle"></div>
-            </div><div class="gap-patch">
-              <div class="circle"></div>
-            </div><div class="circle-clipper right">
-              <div class="circle"></div>
-            </div>
+        <div class="spinner-layer spinner-white-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
           </div>
+        </div>
       </div>
     </div>
 
 
 
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCb5QTtOqAeW7jvKamFDHUWXHSuvxT5__A",
+        authDomain: "nyumba-246417.firebaseapp.com",
+        databaseURL: "https://nyumba-246417.firebaseio.com",
+        projectId: "nyumba-246417",
+        storageBucket: "nyumba-246417.appspot.com",
+        messagingSenderId: "581948417790",
+        appId: "1:581948417790:web:b844ec71ae0ebcae3b27af"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+    </script>
+
+
     <script src="/public/js/app.js"></script>
     <script src="/public/js/ui.js"></script>
+    <script src="/public/js/db.js"></script>
 
   </body>
 </html>

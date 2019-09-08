@@ -12,13 +12,34 @@ $(document).ready(function () {
 
   var current_page = window.location.href;
 
-  var position = current_page.search("/enterSomething");
+  var position = current_page.search("notFound");
   if (position != -1) {
-    var text = '<span class="green-text text-darken-1"><b>Welcome to RemoteHealth <i class="material-icons">add_alert</i></b></span>';
+    var text = '<span class="white-text text-darken-1"><b>Medical ID Not Found <i class="material-icons">error_outline</i></b></span>';
     M.toast({ html: text });
   }
 
 });
+
+
+
+const renderMed_id = (data) => {
+  
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -41,9 +62,10 @@ function getLocation() {
   }//end else
 }//end getLocation()
 
+var lat, long;
 function showPosition(position) {
-  document.getElementById("lat").value = position.coords.latitude;
-  document.getElementById("long").value = position.coords.longitude;
+  lat = position.coords.latitude;
+  long = position.coords.longitude;
   var text = '<span class="green-text text-lighten-3"><b>SUCCESS:</b> Location Pinned Successfully! <i class="material-icons">check_box</i></span>';
   M.toast({ html: text });
   $(".loader-wrapper").fadeOut("slow");
