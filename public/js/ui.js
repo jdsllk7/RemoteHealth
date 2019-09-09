@@ -1,3 +1,4 @@
+const med_data = document.querySelector('.med_data');
 $(document).ready(function () {
 
   $('.sidenav').sidenav();
@@ -22,10 +23,120 @@ $(document).ready(function () {
 
 
 
-const renderMed_id = (data) => {
-  
+
+// Add medical data
+const renderMed_id = (data, id) => {
+  if (med_data) {
+    var html = ``;
+    console.log(data.review_state);
+    if (data.review_state == true) {
+      if (data.priority === 'critical') {
+        html = `
+      <li class="medical_data" data-id="${id}">
+      <div class="collapsible-header black-text">
+        <i class="material-icons">person</i>${data.patient_name}
+        <span class="new badge red" data-badge-caption="${data.priority}"></span>
+      </div>
+      <div class="collapsible-body">
+        <span class="white-text">
+          <form action="/map" method="GET" class="locate_btn">
+            <input type="hidden" name="lat" value="${data.coordinates.latitude}" />
+            <input type="hidden" name="long" value="${data.coordinates.longitude}" />
+            <input type="hidden" name="name" value="${data.patient_name}" />
+            <button type="submit" class="btn-floating btn-small waves-effect
+              waves-light green darken-3 white-text">
+              <i class="material-icons">room</i>
+            </button>
+          </form>
+          <h6><b>RESPONSE TIME:</b></h6>
+          <span><b>Submitted On:</b> ${data.date}</span><br>
+          <span><b>Reviewed On:</b> ${data.review_date}</span><br>
+          <br><hr><br>
+          <h6><b>PATIENT'S INFO:</b></h6>
+          <span><b>Age:</b> ${data.patient_age} ${data.ageType}</span><br>
+          <span><b>Sex:</b> ${data.sex}</span><br>
+          <span><b>Temperature:</b> ${data.patient_temp}</span><br>
+          <span><b>Blood Pressure:</b> ${data.patient_bp}</span><br>
+          <span><b>Weight:</b> ${data.patient_weight}</span><br>
+          <br><hr><br>
+          <h6><b>DIAGNOSIS:</b></h6>
+          <span><b>&#9830; </b>${data.diagnosis}</span><br>
+          <br><hr><br>
+          <h6><b>MEDICAL PRESCRIPTION:</b></h6>
+          <span><b>&#9830; </b>${data.prescription1}</span><br>
+          <span><b>&#9830; </b>${data.prescription2}</span><br>
+          <span><b>&#9830; </b>${data.prescription3}</span><br>
+          <br><hr><br>
+          <h6><b>EXTRA INFO:</b></h6>
+          <span><b>&#9830; </b>${data.extra_doctor_info}</span><br>
+        </span>
+        <br>
+        <a data-id="${id}" class="btn waves-effect waves-light green darken-3 btn-small
+          white-text"><i class="material-icons right">open_in_new</i>Finish</a>
+      </div>
+    </li>
+  `;
+      } else {
+        html = `
+      <li class="medical_data" data-id="${id}">
+      <div class="collapsible-header black-text">
+        <i class="material-icons">person</i>${data.patient_name}
+      </div>
+      <div class="collapsible-body">
+        <span class="white-text">
+          <form action="/map" method="GET" class="locate_btn">
+            <input type="hidden" name="lat" value="${data.coordinates.latitude}" />
+            <input type="hidden" name="long" value="${data.coordinates.longitude}" />
+            <input type="hidden" name="name" value="${data.patient_name}" />
+            <button type="submit" class="btn-floating btn-small waves-effect
+              waves-light green darken-3 white-text">
+              <i class="material-icons">room</i>
+            </button>
+          </form>
+          <h6><b>RESPONSE TIME:</b></h6>
+          <span><b>Submitted On:</b> ${data.date}</span><br>
+          <span><b>Reviewed On:</b> ${data.review_date}</span><br>
+          <br><hr><br>
+          <h6><b>PATIENT'S INFO:</b></h6>
+          <span><b>Age:</b> ${data.patient_age} ${data.ageType}</span><br>
+          <span><b>Sex:</b> ${data.sex}</span><br>
+          <span><b>Temperature:</b> ${data.patient_temp}</span><br>
+          <span><b>Blood Pressure:</b> ${data.patient_bp}</span><br>
+          <span><b>Weight:</b> ${data.patient_weight}</span><br>
+          <br><hr><br>
+          <h6><b>DIAGNOSIS:</b></h6>
+          <span><b>&#9830; </b>${data.diagnosis}</span><br>
+          <br><hr><br>
+          <h6><b>MEDICAL PRESCRIPTION:</b></h6>
+          <span><b>&#9830; </b>${data.prescription1}</span><br>
+          <span><b>&#9830; </b>${data.prescription2}</span><br>
+          <span><b>&#9830; </b>${data.prescription3}</span><br>
+          <br><hr><br>
+          <h6><b>EXTRA INFO:</b></h6>
+          <span><b>&#9830; </b>${data.extra_doctor_info}</span><br>
+        </span>
+        <br>
+        <a data-id="${id}" class="btn waves-effect waves-light green darken-3 btn-small
+          white-text"><i class="material-icons right">open_in_new</i>Finish</a>
+      </div>
+    </li>
+  `;
+      }
+
+
+      med_data.innerHTML += html;
+    }
+  }
 };
 
+
+
+
+//Remove Med Data
+const removeMed_id = (id) => {
+  const medical_data = document.querySelector(`.medical_data[data-id=${id}]`);
+  medical_data.remove();
+};
 
 
 

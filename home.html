@@ -8,9 +8,8 @@
     <title>RemoteHealth | Home</title>
 
     <!-- CSS -->
-    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-    <link href="/public/materialize/materials_icons/css/material-icons.css"
-      rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- <link href="/public/materialize/materials_icons/css/material-icons.css" rel="stylesheet" /> -->
     <link href="/public/css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="/public/materialize/css/materialize.min.css">
     <link rel="manifest" href="/public/manifest.json">
@@ -42,7 +41,7 @@
           <a class="brand-logo center"><h5>RemoteHealth</h5></a>
           <a onclick="document.getElementById('loader-wrapper2').style.display=
             'block';" href="/respond"><i class="left material-icons">add_alert</i><span
-              class="nav_badge new badge blue"><strong>14</strong></span></a>
+              class="nav_badge new badge blue"><strong id='data_count'></strong></span></a>
           <a onclick="document.getElementById('loader-wrapper2').style.display=
             'block';" href="/signOut" class="right">LogOut</a>
         </div>
@@ -85,14 +84,14 @@
           <p class="col s10"><b>SEX</b></p>
           <p>
             <label class="white-text" for="male">
-              <input class="with-gap white" id="male" name="sex" value="male" type="radio"
+              <input class="with-gap white" id="male" name="sex" value="Male" type="radio"
                 checked/>
               <span>Male</span>
             </label>
           </p>
           <p>
             <label class="white-text" for="female">
-              <input class="with-gap white" id="female"name="sex" value="female"
+              <input class="with-gap white" id="female"name="sex" value="Female"
                 type="radio" />
               <span>Female</span>
             </label>

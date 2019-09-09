@@ -8,10 +8,9 @@
         <title>RemoteHealth | Register</title>
 
         <!-- CSS -->
-        <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-        <link
-            href="../public/materialize/materials_icons/css/material-icons.css"
-            rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- <link href="../public/materialize/materials_icons/css/material-icons.css" rel="stylesheet" /> -->
+
         <link href="../public/css/styles.css" rel="stylesheet" />
         <link rel="stylesheet"
             href="../public/materialize/css/materialize.min.css">
@@ -36,7 +35,7 @@
 
 
 
-    <body class="grey darken-2">
+    <body class="grey darken-3">
 
         <!-- top nav -->
         <div class="navbar-fixed">
@@ -44,7 +43,8 @@
                 <div class="nav-wrapper container">
                     <a class="brand-logo center"><h5>RemoteHealth</h5></a>
                     <a href="/respond"><i class="left material-icons">add_alert</i><span
-                            class="nav_badge new badge blue"><strong>14</strong></span></a>
+                            class="nav_badge new badge blue"><strong
+                                id='data_count'></strong></span></a>
                     <a href="/respond"><i class="right material-icons">keyboard_backspace</i></a>
                 </div>
             </nav>
@@ -63,21 +63,21 @@
                 <div class="col s12" style="border:1px solid #ccc; margin-top:
                     0px;">
                     <div id='googleMap' class="card-panel teal"
-                        style="border:1px solid #ccc;height:400px;">
+                        style="border:1px solid #ccc;height:500px;">
                         <span class="white-text">Loading Map...</span>
                     </div>
                 </div>
 
                 <p id="lat" style="display:none"><%= lat %></p>
-                <p id="long" style="display:none"><%= long %></p>
+                    <p id="long" style="display:none"><%= long %></p>
 
-        </div>
-
-
+                    </div>
 
 
 
-            <script type="text/javascript">
+
+
+                    <script type="text/javascript">
 
                 var lat = document.getElementById("lat").innerHTML;
                 var long = document.getElementById("long").innerHTML;
@@ -112,8 +112,33 @@
     
               google.maps.event.addDomListener(window, 'load', initialize);
           </script>
+
+
+                    <!-- The core Firebase JS SDK is always required and must be listed first -->
+                    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+                    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
+
+                    <script>
+                    // Your web app's Firebase configuration
+                    var firebaseConfig = {
+                        apiKey: "AIzaSyCb5QTtOqAeW7jvKamFDHUWXHSuvxT5__A",
+                        authDomain: "nyumba-246417.firebaseapp.com",
+                        databaseURL: "https://nyumba-246417.firebaseio.com",
+                        projectId: "nyumba-246417",
+                        storageBucket: "nyumba-246417.appspot.com",
+                        messagingSenderId: "581948417790",
+                        appId: "1:581948417790:web:b844ec71ae0ebcae3b27af"
+                    };
+                    // Initialize Firebase
+                    firebase.initializeApp(firebaseConfig);
+                    const db = firebase.firestore();
+                    </script>
+
+
                     <script src="../public/js/app.js"></script>
                     <script src="../public/js/ui.js"></script>
+                    <script src="../public/js/db.js"></script>
+
 
                 </body>
             </html>

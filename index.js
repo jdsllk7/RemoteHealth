@@ -33,7 +33,6 @@ app.get('/', function (request, response) {
 
 app.get('/home', function (request, response) {
     response.cookie('med_id', request.query.med_id, { maxAge: 31556952000 });
-    // console.log(request.query.med_id);
     response.sendFile(path.join(__dirname + '/home.html'));
 });
 

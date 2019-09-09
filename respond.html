@@ -8,8 +8,7 @@
     <title>RemoteHealth | Home</title>
 
     <!-- CSS -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- <link href="/public/materialize/materials_icons/css/material-icons.css" rel="stylesheet" /> -->
     <link href="/public/css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="/public/materialize/css/materialize.min.css">
@@ -33,15 +32,15 @@
 
 
 
-  <body class="grey darken-2">
+  <body class="grey darken-3">
 
     <!-- top nav -->
     <div class="navbar-fixed">
       <nav class="green darken-3" style="z-index: 999;">
         <div class="nav-wrapper container">
           <a class="brand-logo center"><h5>RemoteHealth</h5></a>
-          <a onclick="document.getElementById('loader-wrapper2').style.display = 'block';" href="/respond"><i class="left material-icons">add_alert</i><span
-              class="nav_badge new badge blue"><strong>14</strong></span></a>
+          <a onclick="document.getElementById('loader-wrapper2').style.display = 'block';" href="/respond"><i class="left material-icons">add_alert</i>
+            <span class="nav_badge new badge blue"><strong id='data_count'></strong></span></a>
           <a onclick="document.getElementById('loader-wrapper2').style.display = 'block';" href="/home"><i class="right material-icons">keyboard_backspace</i></a>
         </div>
       </nav>
@@ -58,55 +57,8 @@
 
       <br><br><br><br>
 
-      <ul class="collapsible expandable popout col s12">
-
-
-
-        <li class="active">
-          <div class="collapsible-header black-text">
-            <i class="material-icons">person</i>Ben Lungu
-            <span class="new badge red" data-badge-caption="Critical!"></span>
-          </div>
-          <div class="collapsible-body">
-            <span class="white-text">
-              <form action="/map" method="GET" class="locate_btn">
-                <input type="hidden" name="lat" value="-15.8" />
-                <input type="hidden" name="long" value="28.1" />
-                <input type="hidden" name="name" value="Tony Stark" />
-                <button type="submit" class="btn-floating btn-small waves-effect
-                  waves-light green darken-3 white-text">
-                  <i class="material-icons">room</i>
-                </button>
-              </form>
-              <h6><b>Response Time:</b></h6>
-              <span><b>Submitted:</b> 2hrs ago</span><br>
-              <span><b>Received:</b> 20min ago</span><br>
-              <br><hr><br>
-              <h6><b>Patient's Info:</b></h6>
-              <span><b>Age:</b> 27 years</span><br>
-              <span><b>Sex:</b> Female</span><br>
-              <span><b>Temperature:</b> 36.4&#8451;</span><br>
-              <span><b>Blood Pressure:</b> 139/89mmHg</span><br>
-              <span><b>Weight:</b> 72kg</span><br>
-              <br><hr><br>
-              <h6><b>Diagnosis:</b></h6>
-              <span><b>&#9830; </b>Malaria Found</span><br>
-              <br><hr><br>
-              <h6><b>Medical Prescription:</b></h6>
-              <span><b>&#9830; </b>Panado: 2/3times per day</span><br>
-              <span><b>&#9830; </b>Fragile: 1 per day</span><br>
-              <br><hr><br>
-              <h6><b>Extra info:</b></h6>
-              <span><b>&#9830; </b>Please eat your fruits and vegetables,
-                regularly</span><br>
-            </span>
-            <br>
-            <a class="btn waves-effect waves-light green darken-3 btn-small
-              white-text"><i class="material-icons right">open_in_new</i>Finish</a>
-          </div>
-        </li>
-
-
+      <ul class="med_data collapsible expandable popout col s12">
+        <!-- Outputting data -->
       </ul>
 
 
@@ -129,8 +81,30 @@
     </div>
 
 
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCb5QTtOqAeW7jvKamFDHUWXHSuvxT5__A",
+        authDomain: "nyumba-246417.firebaseapp.com",
+        databaseURL: "https://nyumba-246417.firebaseio.com",
+        projectId: "nyumba-246417",
+        storageBucket: "nyumba-246417.appspot.com",
+        messagingSenderId: "581948417790",
+        appId: "1:581948417790:web:b844ec71ae0ebcae3b27af"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+    </script>
+
+
     <script src="/public/js/app.js"></script>
     <script src="/public/js/ui.js"></script>
+    <script src="/public/js/db.js"></script>
 
   </body>
 </html>
