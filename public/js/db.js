@@ -40,7 +40,7 @@ if (form) {
 
         }
     });
-}
+}//end if-form
 
 
 
@@ -50,30 +50,41 @@ if (form2) {
     form2.addEventListener('submit', evt => {
         evt.preventDefault();
 
-        let date = new Date();
-        let time = date.getHours() + ":" + date.getMinutes();
+        if (!lat) {
+            var text = '<span class="white-text text-darken-1"><b>Please Select Patient\'s Location<i class="material-icons">room</i></b></span>';
+            M.toast({ html: text });
+            document.getElementById('loader-wrapper2').style.display = 'none';
+        } else {
 
-        const patient_info = {
-            patient_name: form2.patient_name.value,
-            patient_age: form2.patient_age.value,
-            ageType: form2.ageType.value,
-            sex: document.querySelector('input[name=sex]:checked').value,
-            patient_temp: form2.patient_temp.value,
-            patient_bp: form2.patient_bp.value,
-            patient_weight: form2.patient_weight.value,
-            textarea1: form2.textarea1.value,
-            priority: form2.priority.value,
-            location: form2.location.value,
-            coordinates: new firebase.firestore.GeoPoint(lat, long),
-            date: date.toDateString() + " " + time + 'Hrs'
-        };
+            let date = new Date();
+            let time = date.getHours() + ":" + date.getMinutes();
 
-        console.log(patient_info);
+            const patient_info = {
+                patient_name: form2.patient_name.value,
+                patient_age: form2.patient_age.value,
+                ageType: form2.ageType.value,
+                sex: document.querySelector('input[name=sex]:checked').value,
+                patient_temp: form2.patient_temp.value + '℃',
+                patient_bp: form2.patient_bp.value + 'mmHg',
+                patient_weight: form2.patient_weight.value + 'kg',
+                textarea1: form2.textarea1.value,
+                priority: form2.priority.value,
+                location: form2.location.value,
+                coordinates: new firebase.firestore.GeoPoint(lat, long),
+                date: date.toDateString() + " " + time + 'Hrs'
+            };
 
-        
+            console.log(patient_info);
 
-        // db.collection('patient_info').add(patient_info)
-        //     .catch(err => console.log(err));
+            setTimeout(function () {
+                document.getElementById('loader-wrapper2').style.display = 'none';
+                var text = '<span class="white-text text-darken-1"><b>Data Uploaded Successfully!<i class="material-icons">check_box</i></b></span>';
+                M.toast({ html: text });
+                form2.reset();
+            }, 3000);
 
+            db.collection('patient_info').add(patient_info)
+                .catch(err => console.log(err));
+        }//end if-lat
     });
-}
+}//end if-form

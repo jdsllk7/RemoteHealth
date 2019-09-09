@@ -62,19 +62,17 @@
 
         <div style="margin-bottom:20px;" class="input-field col s10 offset-s1">
           <input id="patient_name" type="text" class="validate"
-            name="patient_name"
-            >
+            name="patient_name" required>
           <label for="patient_name" class="white-text">Full Name</label>
         </div>
 
         <div style="margin-bottom:20px;" class="input-field col s5 offset-s1">
           <input id="patient_age" type="number" class="validate"
-            name="patient_age"
-            >
+            name="patient_age" required>
           <label for="patient_age" class="white-text">Age</label>
         </div>
         <div class="input-field col s5">
-          <select  name="ageType" id="ageType">
+          <select name="ageType" id="ageType">
             <option value="years" selected>Years</option>
             <option value="months">Months</option>
             <option value="weeks">Weeks</option>
@@ -109,23 +107,20 @@
 
       <div style="margin-bottom:20px;" class="input-field col s10 offset-s1">
         <input id="patient_temp" type="text" class="validate"
-          name="patient_temp"
-          >
-        <label for="patient_temp" class="white-text">Temperature</label>
+          name="patient_temp">
+        <label for="patient_temp" class="white-text">Temperature (℃)</label>
       </div>
 
 
       <div style="margin-bottom:20px;" class="input-field col s10 offset-s1">
-        <input id="patient_bp" type="text" class="validate" name="patient_bp"
-          >
-        <label for="patient_bp" class="white-text">Blood Pressure</label>
+        <input id="patient_bp" type="text" class="validate" name="patient_bp">
+        <label for="patient_bp" class="white-text">Blood Pressure (mmHg)</label>
       </div>
 
 
       <div style="margin-bottom:20px;" class="input-field col s10 offset-s1">
         <input id="patient_weight" type="text" class="validate"
-          name="patient_weight"
-          >
+          name="patient_weight">
         <label for="patient_weight" class="white-text">Weight (kg)</label>
       </div>
 
@@ -143,7 +138,7 @@
 
 
       <div style="margin-bottom:30px;" class="input-field col s10 offset-s1">
-        <select  name="priority" id="priority">
+        <select name="priority" id="priority">
           <option value="" selected></option>
           <option value="critical">Critical</option>
         </select>
@@ -152,10 +147,10 @@
 
 
       <div style="margin-bottom:30px;" class="input-field col s10 offset-s1">
-        <select required name="location" id="location" onchange="getLocation()">
+        <select name="location" id="location" onchange="getLocation()">
           <option value="" selected></option>
-          <option value="healthCenter">Health Center</option>
-          <option value="remoteLocation">Remote Location</option>
+          <option value="Health Center">Health Center</option>
+          <option value="Remote Location">Remote Location</option>
         </select>
         <label class="white-text">Patient's Location</label>
       </div>
