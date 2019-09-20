@@ -27,8 +27,8 @@
         <meta name="theme-color" content="#2e7d32">
 
         <!--Import jQuery before materialize.js-->
-        <script src="http://maps.googleapis.com/maps/api/js"></script>
-        <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDc5FCmwHQSZikD6Lb-sWeZ4_t4cm3rA0c&callback=initMap" async defer></script> -->
+        <!-- <script src="http://maps.googleapis.com/maps/api/js"></script> -->
+        
         <script src="../public/js/jquery-3.4.1.min.js"></script>
         <script src="../public/materialize/js/materialize.min.js"></script>
     </head>
@@ -42,10 +42,10 @@
             <nav class="green darken-3" style="z-index: 999;">
                 <div class="nav-wrapper container">
                     <a class="brand-logo center"><h5>RemoteHealth</h5></a>
-                    <a href="/respond"><i class="left material-icons">add_alert</i><span
+                    <a href="/respond" onclick="document.getElementById('loader-wrapper2').style.display = 'block';"><i class="left material-icons">add_alert</i><span
                             class="nav_badge new badge blue"><strong
                                 id='data_count'></strong></span></a>
-                    <a href="/respond"><i class="right material-icons">keyboard_backspace</i></a>
+                    <a href="/respond"><i class="right material-icons" onclick="document.getElementById('loader-wrapper2').style.display = 'block';">keyboard_backspace</i></a>
                 </div>
             </nav>
         </div>
@@ -58,12 +58,16 @@
             <h5 style="margin-bottom:20px;margin-top:30px;" class="col s10
                 white-text">Locating: <span style="font-size: 0.8em;"><%= name
                         %>...</span>
-                </h5>
+                        <!-- <a href="/map" style="position: absolute;right: 10px;margin-top: -15px;" class="btn-floating btn-large waves-effect waves-light grey darken-2"><i class="material-icons">refresh</i></a> -->
+                
+                    </h5>
+                    <p id="zoom_clicked" style="margin-bottom:10px;margin-top:0px;" class="col s10
+                    white-text">Click red marker to zoom in.</p>
 
                 <div class="col s12" style="border:1px solid #ccc; margin-top:
                     0px;">
-                    <div id='googleMap' class="card-panel teal"
-                        style="border:1px solid #ccc;height:500px;">
+                    <div id='map' class="card-panel transparent"
+                        style="border:1px solid #ccc;height:450px;">
                         <span class="white-text">Loading Map...</span>
                     </div>
                 </div>
@@ -71,47 +75,96 @@
                 <p id="lat" style="display:none"><%= lat %></p>
                     <p id="long" style="display:none"><%= long %></p>
 
-                    </div>
+        </div>
+
+        <div id="loader-wrapper" class="loader-wrapper loader-wrapper-pre center grey darken-3">
+            <div class="preloader-wrapper active">
+              <div class="spinner-layer spinner-white-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="loader-wrapper2" class="loader-wrapper center grey darken-3">
+            <div class="preloader-wrapper active">
+                <div class="spinner-layer spinner-white-only">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+            </div>
+          </div>
 
 
 
 
 
-                    <script type="text/javascript">
-
-                var lat = document.getElementById("lat").innerHTML;
-                var long = document.getElementById("long").innerHTML;
-    
-              //Mapping Business
-              var myCenter=new google.maps.LatLng(lat,long);
-              
-              function initialize() {
-                var mapProp = {
-                center: myCenter,
-                zoom:5,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-                };
-            
-                var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-            
-                var marker = new google.maps.Marker({
-                position: myCenter,
-                title:'Click to zoom',
-                animation:google.maps.Animation.BOUNCE
-                });
-                
-                marker.setMap(map);
-                
-                // Zoom to 9 when clicking on marker
-                google.maps.event.addListener(marker,'click',function() {
-    
-                    map.setZoom(9);
+          <script>
+              var lat1 = Number(document.getElementById("lat").innerHTML);
+                var long1 = Number(document.getElementById("long").innerHTML);
+                function initMap() {
+                  var myLatlng = {lat: lat1, lng: long1};
+          
+                  var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 4,
+                    center: myLatlng
+                  });
+          
+                  var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: map,
+                    title: 'Click to zoom'
+                  });
+          
+                  map.addListener('center_changed', function() {
+                    // 3 seconds after the center of the map has changed, pan back to the
+                    // marker.
+                    window.setTimeout(function() {
+                      map.panTo(marker.getPosition());
+                    }, 3000);
+                  });
+          
+                  marker.addListener('click', function() {
+                    map.setZoom(8);
                     map.setCenter(marker.getPosition());
-                });
-              }//end function
-    
-              google.maps.event.addDomListener(window, 'load', initialize);
-          </script>
+                    document.getElementById('zoom_clicked').style.display = "none";
+                  });
+                }
+              </script>
+                <script
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4bSJTKEB7naiqu0LSYp27SQmglUyZ-Jo&callback=initMap"
+                    async defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                     <!-- The core Firebase JS SDK is always required and must be listed first -->

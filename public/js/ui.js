@@ -19,6 +19,7 @@ $(document).ready(function () {
     M.toast({ html: text });
   }
 
+  $('.loader-wrapper-pre').fadeOut();
 });
 
 
@@ -39,7 +40,7 @@ const renderMed_id = (data, id) => {
       </div>
       <div class="collapsible-body">
         <span class="white-text">
-          <form action="/map" method="GET" class="locate_btn">
+          <form action="/map" method="GET" class="locate_btn" onsubmit="document.getElementById('loader-wrapper2').style.display = 'block'; getLocation();">
             <input type="hidden" name="lat" value="${data.coordinates.latitude}" />
             <input type="hidden" name="long" value="${data.coordinates.longitude}" />
             <input type="hidden" name="name" value="${data.patient_name}" />
@@ -84,7 +85,7 @@ const renderMed_id = (data, id) => {
       </div>
       <div class="collapsible-body">
         <span class="white-text">
-          <form action="/map" method="GET" class="locate_btn">
+          <form action="/map" method="GET" class="locate_btn" onsubmit="document.getElementById('loader-wrapper2').style.display = 'block'; getLocation();">
             <input type="hidden" name="lat" value="${data.coordinates.latitude}" />
             <input type="hidden" name="long" value="${data.coordinates.longitude}" />
             <input type="hidden" name="name" value="${data.patient_name}" />

@@ -1,3 +1,7 @@
+if(!db){
+    var text = '<span class="white-text text-darken-1"><b>Bad Internet Connection <i class="material-icons">error_outline</i></b></span>';
+    M.toast({ html: text });
+}
 // enable offline data
 db.enablePersistence()
     .catch(function (err) {
