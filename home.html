@@ -138,7 +138,7 @@
 
       <div style="margin-bottom:30px;" class="input-field col s10 offset-s1">
         <select name="priority" id="priority">
-          <option value="" selected></option>
+          <option value="" selected>-Select-</option>
           <option value="critical">Critical</option>
         </select>
         <label class="white-text">Response Priority</label>
@@ -146,8 +146,22 @@
 
 
       <div style="margin-bottom:30px;" class="input-field col s10 offset-s1">
+        <select name="town" id="town">
+          <option value="" selected>-Select-</option>
+          <option value="Kitwe">Kitwe</option>
+          <option value="Ndola">Ndola</option>
+          <option value="Mufulira">Mufulira</option>
+          <option value="Luanshya">Luanshya</option>
+          <option value="Chingola">Chingola</option>
+          <option value="Chililabombwe">Chililabombwe</option>
+        </select>
+        <label class="white-text">Town</label>
+      </div>
+
+
+      <div style="margin-bottom:30px;" class="input-field col s10 offset-s1">
         <select name="location" id="location" onchange="getLocation()">
-          <option value="" selected></option>
+          <option value="" selected>-Select-</option>
           <option value="Health Center">Health Center</option>
           <option value="Remote Location">Remote Location</option>
         </select>

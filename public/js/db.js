@@ -114,6 +114,7 @@ if (form2) {
                 patient_weight: patient_weight,
                 textarea1: form2.textarea1.value,
                 priority: form2.priority.value,
+                town: form2.town.value,
                 location: form2.location.value,
                 coordinates: new firebase.firestore.GeoPoint(lat, long),
                 date: date.toDateString() + " " + time,
@@ -130,7 +131,7 @@ if (form2) {
 
             setTimeout(function () {
                 document.getElementById('loader-wrapper2').style.display = 'none';
-                var text = '<span class="white-text text-darken-1"><b>Data Uploaded Successfully!<i class="material-icons">check_box</i></b></span>';
+                var text = '<span class="white-text text-darken-1"><b>Data Submitted Successfully!<i class="material-icons">check_box</i></b></span>';
                 M.toast({ html: text });
                 form2.reset();
             }, 2000);
