@@ -118,6 +118,7 @@ if (form2) {
                 location: form2.location.value,
                 coordinates: new firebase.firestore.GeoPoint(lat, long),
                 date: date.toDateString() + " " + time,
+                actual_date: date,
                 prescription1: 'none',
                 prescription2: 'none',
                 prescription3: 'none',
