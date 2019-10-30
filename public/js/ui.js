@@ -29,6 +29,7 @@ $(document).ready(function () {
 const renderMed_id = (data, id) => {
   if (med_data) {
     var html = ``;
+
     console.log(data.review_state);
     if (data.review_state == true) {
       if (data.priority === 'critical') {
@@ -51,7 +52,7 @@ const renderMed_id = (data, id) => {
           </form>
           <h6><b>RESPONSE TIME:</b></h6>
           <span><b>Submitted On:</b> ${data.date}</span><br>
-          <span><b>Reviewed On:</b> ${data.review_date}</span><br>
+          <span><b>Reviewed:</b> ${timeSince(new Date(Date.now()))}</span><br>
           <br><hr><br>
           <h6><b>PATIENT'S INFO:</b></h6>
           <span><b>Age:</b> ${data.patient_age} ${data.ageType}</span><br>
@@ -96,7 +97,7 @@ const renderMed_id = (data, id) => {
           </form>
           <h6><b>RESPONSE TIME:</b></h6>
           <span><b>Submitted On:</b> ${data.date}</span><br>
-          <span><b>Reviewed On:</b> ${data.review_date}</span><br>
+          <span><b>Reviewed:</b> ${data.review_date}</span><br>
           <br><hr><br>
           <h6><b>PATIENT'S INFO:</b></h6>
           <span><b>Age:</b> ${data.patient_age} ${data.ageType}</span><br>
@@ -144,6 +145,37 @@ const removeMed_id = (id) => {
 
 
 
+
+
+function timeSince(date) {
+
+  console.log(date);
+
+  var seconds = Math.floor((new Date() - date) / 1000);
+
+  var interval = Math.floor(seconds / 31536000);
+
+  if (interval > 1) {
+    return interval + " years ago";
+  }
+  interval = Math.floor(seconds / 2592000);
+  if (interval > 1) {
+    return interval + " months ago";
+  }
+  interval = Math.floor(seconds / 86400);
+  if (interval > 1) {
+    return interval + " days ago";
+  }
+  interval = Math.floor(seconds / 3600);
+  if (interval > 1) {
+    return interval + " hours ago";
+  }
+  interval = Math.floor(seconds / 60);
+  if (interval > 1) {
+    return interval + " minutes ago";
+  }
+  return Math.floor(seconds) + " seconds ago";
+}
 
 
 
