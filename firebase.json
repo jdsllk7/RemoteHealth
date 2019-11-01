@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "remoteHealth_agent",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

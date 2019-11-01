@@ -125,6 +125,7 @@ if (form2) {
                 diagnosis: 'none',
                 extra_doctor_info: 'none',
                 review_date: 'none',
+                persist: 'no',
                 review_state: false
             };
 
