@@ -1,65 +1,149 @@
-<!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/7.2.2/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/7.2.2/firebase-auth.js"></script>
-    <script defer src="/__/firebase/7.2.2/firebase-database.js"></script>
-    <script defer src="/__/firebase/7.2.2/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/7.2.2/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
+    <title>RemoteHealth | Register</title>
+
+    <!-- CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- <link href="/public/materialize/materials_icons/css/material-icons.css" rel="stylesheet" /> -->
+    <link href="/public/css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/public/materialize/css/materialize.min.css">
+    <link rel="manifest" href="/public/manifest.json">
+
+    <!-- brower icons -->
+    <link rel="icon" type="image/gif" href="/public/img/icons/icon-72x72.png">
+    <link rel="shortcut icon" href="/public/img/icons/icon-72x72.png">
+
+    <!-- ios support -->
+    <link rel="apple-touch-icon" href="/public/img/icons/icon-96x96.png">
+    <meta name="apple-mobile-web-app-status-bar" content="#2e7d32">
+
+    <meta name="theme-color" content="#2e7d32">
+
+    <!--Import jQuery before materialize.js-->
+    <script src="/public/js/jquery-3.4.1.min.js"></script>
+    <script src="/public/materialize/js/materialize.min.js"></script>
+
   </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+
+
+
+  <body class="grey darken-3">
+
+    <!-- top nav -->
+    <div class="navbar-fixed">
+      <nav class="green darken-3" style="z-index: 999;">
+        <div class="nav-wrapper container">
+          <a class="brand-logo center"><h5>RemoteHealth</h5></a>
+          <span class="nav_badge new badge blue"><strong id='data_count'></strong></span>
+          <i class="left material-icons">add_alert</i>
+          <ul id="nav-mobile" class="right">
+          </ul>
+        </div>
+      </nav>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+
+
+
+
+    <form class="row container" id='med_id_form'
+      autocomplete="on" onsubmit="document.getElementById('loader-wrapper2').style.display = 'block';">
+
+      <br>
+      <br>
+      <br>
+      <h5 class="center white-text">Register</h5>
+      <br>
+      <br>
+      <br>
+
+      <div class="input-field col s10 m8 l6 offset-s1 offset-m2 offset-l3">
+        <input id="med_id" type="number" class="white-text validate"
+          name="med_id"
+          autofocus
+          required autocomplete="on">
+        <label for="last_name" class="white-text">Enter Medical ID</label>
+      </div>
+      <!-- <input type="hidden" name="player_id" id="player_id"> -->
+      <div class="input-field col s6 offset-s3 center">
+        <button class="btn waves-effect waves-light green darken-3"
+          type="submit"
+          name="action">Submit
+          <i class="material-icons right">open_in_new</i>
+        </button>
+      </div>
+
+    </form>
+
+    <div id="loader-wrapper2" class="loader-wrapper center grey darken-3">
+      <div class="preloader-wrapper active">
+          <div class="spinner-layer spinner-white-only">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div id="loader-wrapper" class="loader-wrapper loader-wrapper-pre center grey darken-3">
+      <div class="preloader-wrapper active">
+        <div class="spinner-layer spinner-white-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- <script>
+      $(document).ready(function () {
+        
+        $('.tooltipped').tooltip();
+        
+          var text = '<span class="green-text text-lighten-3"><b>Welcome to RemoteHealth <i class="material-icons">add_alert</i></b></span>';
+          M.toast({ html: text });
+
+      });
+    </script> -->
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCb5QTtOqAeW7jvKamFDHUWXHSuvxT5__A",
+        authDomain: "nyumba-246417.firebaseapp.com",
+        databaseURL: "https://nyumba-246417.firebaseio.com",
+        projectId: "nyumba-246417",
+        storageBucket: "nyumba-246417.appspot.com",
+        messagingSenderId: "581948417790",
+        appId: "1:581948417790:web:b844ec71ae0ebcae3b27af"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
     </script>
+
+
+    <script src="/public/js/app.js"></script>
+    <script src="/public/js/ui.js"></script>
+    <script src="/public/js/db.js"></script>
+
   </body>
 </html>

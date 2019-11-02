@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 
 //DISPLAY REGISTER PAGE
 app.get('/', function (request, response) {
-    response.sendFile(path.join(__dirname + '/register.html'));
+    response.sendFile(path.join(__dirname + '/index.html'));
 });
 
 app.get('/home', function (request, response) {
@@ -37,7 +37,7 @@ app.get('/home', function (request, response) {
 });
 
 app.get('/fallback', function (request, response) {
-    response.sendFile(path.join(__dirname + '/fallback.html'));
+    response.sendFile(path.join(__dirname + '/404.html'));
 });
 
 app.get('/respond', function (request, response) {
@@ -49,7 +49,7 @@ app.get('/icon', function (request, response) {
 });
 
 app.get('/signOut', function (request, response) {
-    response.clearCookie('med_id');
+    // response.clearCookie('med_id');
     console.log('SignOut');
     response.redirect('/');
 });

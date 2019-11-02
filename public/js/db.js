@@ -1,4 +1,4 @@
-if(!db){
+if (!db) {
     var text = '<span class="white-text text-darken-1"><b>Bad Internet Connection <i class="material-icons">error_outline</i></b></span>';
     M.toast({ html: text });
 }
@@ -147,13 +147,14 @@ if (form2) {
 
 
 // Delete data
-// const med_data = document.querySelector('.med_data');
 if (med_data) {
     med_data.addEventListener('click', evt => {
         if (evt.target.tagName === 'A') {
             const id = evt.target.getAttribute('data-id');
             console.log(id);
-            db.collection('patient_info').doc(id).delete();
+            db.collection('patient_info').doc(id).update({
+                persist: 'yes'
+            });
         }
     });
 }
